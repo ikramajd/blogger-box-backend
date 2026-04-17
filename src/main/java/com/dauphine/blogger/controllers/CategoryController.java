@@ -7,6 +7,7 @@ import com.dauphine.blogger.services.CategoryService;
 import com.dauphine.blogger.services.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,14 +56,14 @@ public class CategoryController {
 
     @PostMapping
     @Operation(summary = "Create a category")
-    public ResponseEntity<Category> create(@RequestBody CategoryRequest request) {
+    public ResponseEntity<Category> create(@Valid @RequestBody CategoryRequest request) {
         Category category = categoryService.create(request);
         return ResponseEntity.created(URI.create("/v1/categories/" + category.getId())).body(category);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a category")
-    public ResponseEntity<Category> update(@PathVariable UUID id, @RequestBody CategoryRequest request) {
+    public ResponseEntity<Category> update(@PathVariable UUID id, @Valid @RequestBody CategoryRequest request) {
         return ResponseEntity.ok(categoryService.update(id, request));
     }
 

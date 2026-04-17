@@ -24,7 +24,17 @@ public class DataInitializer {
             "Health",
             "Business",
             "Science",
-            "Lifestyle"
+            "Lifestyle",
+            "Programming",
+            "Finance",
+            "Music",
+            "Movies",
+            "Books",
+            "Gaming",
+            "Environment",
+            "Productivity",
+            "Career",
+            "News"
     );
 
     @Bean

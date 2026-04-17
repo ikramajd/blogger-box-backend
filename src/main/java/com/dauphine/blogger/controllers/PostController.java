@@ -5,6 +5,7 @@ import com.dauphine.blogger.models.Post;
 import com.dauphine.blogger.services.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,14 +48,14 @@ public class PostController {
 
     @PostMapping
     @Operation(summary = "Create a post")
-    public ResponseEntity<Post> create(@RequestBody PostRequest request) {
+    public ResponseEntity<Post> create(@Valid @RequestBody PostRequest request) {
         Post post = postService.create(request);
         return ResponseEntity.created(URI.create("/v1/posts/" + post.getId())).body(post);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a post")
-    public ResponseEntity<Post> update(@PathVariable UUID id, @RequestBody PostRequest request) {
+    public ResponseEntity<Post> update(@PathVariable UUID id, @Valid @RequestBody PostRequest request) {
         return ResponseEntity.ok(postService.update(id, request));
     }
 
