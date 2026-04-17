@@ -13,6 +13,8 @@ import java.util.UUID;
 public interface PostRepository extends JpaRepository<Post, UUID> {
     List<Post> findAllByOrderByCreatedDateDesc();
 
+    boolean existsByTitleIgnoreCase(String title);
+
     List<Post> findAllByCategory_IdOrderByCreatedDateDesc(UUID categoryId);
 
     List<Post> findAllByCreatedDateBetweenOrderByCreatedDateDesc(LocalDateTime start, LocalDateTime end);
